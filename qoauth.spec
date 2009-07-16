@@ -12,9 +12,9 @@ Source0:	http://files.ayoy.net/qoauth/release/%{version}/src/%{name}-%{version}-
 # Source0-md5:	0d0c8e6a1328d4c60984f4cb759a361a
 URL:		http://files.ayoy.net/qoauth/doc/
 BuildRequires:	QtNetwork-devel >= 4.3.0
+BuildRequires:	qca-devel >= 2.0.0
 BuildRequires:	qt4-build >= 4.3.0
 BuildRequires:	qt4-qmake >= 4.3.0
-BuildRequires:	qca-devel >= 2.0.0
 Requires:	qt4-plugin-qca-ossl >= 2.0.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
