@@ -1,0 +1,32 @@
+--- qoauth-1.0.1-src/src/pcfile.sh.orig	2015-04-01 17:52:00.000000000 +0000
++++ qoauth-1.0.1-src/src/pcfile.sh	2015-04-01 17:52:16.000000000 +0000
+@@ -4,7 +4,7 @@
+ 
+ echo "prefix=$1
+ exec_prefix=\${prefix}
+-libdir=\${prefix}/lib
++libdir=\${prefix}/$3
+ includedir=\${prefix}/include/QtOAuth
+ 
+ Name: QOAuth
+--- qoauth-1.0.1-src/src/src.pro.orig	2015-04-01 17:46:57.000000000 +0000
++++ qoauth-1.0.1-src/src/src.pro	2015-04-01 18:25:54.000000000 +0000
+@@ -58,14 +58,11 @@ else:unix {
+     else:INSTALL_PREFIX = $${PREFIX}
+ 
+     # this creates a pkgconfig file
+-    system( ./pcfile.sh $${INSTALL_PREFIX} $${VERSION} )
+     pkgconfig.files = qoauth.pc
+-    
+-    contains(QMAKE_HOST.arch, x86_64) {
+-      target.path = $${INSTALL_PREFIX}/lib64
+-    } else {
+-      target.path = $${INSTALL_PREFIX}/lib
+-    }
++    target.path = $$[QT_INSTALL_LIBS]
++    LIBDIR = $$basename( target.path )
++
++    system( ./pcfile.sh $${INSTALL_PREFIX} $${VERSION} $${LIBDIR} )
+ 
+     headers.path = $${INSTALL_PREFIX}/include/QtOAuth
+     docs.path = $${INSTALL_PREFIX}/share/doc/$${TARGET}-$${VERSION}/html

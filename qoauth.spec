@@ -2,11 +2,12 @@ Summary:	qoauth - Qt OAuth Support Library
 Summary(pl.UTF-8):	qoauth - biblioteka Qt wsparcia dla OAuth
 Name:		qoauth
 Version:	1.0.1
-Release:	1
+Release:	2
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://files.ayoy.net/qoauth/release/current/src/%{name}-%{version}-src.tar.bz2
 # Source0-md5:	bcb6d01e6c9a6fb22099c9e0f5889578
+Patch0:		x32.patch
 URL:		http://files.ayoy.net/qoauth/doc/
 BuildRequires:	QtNetwork-devel
 BuildRequires:	QtTest-devel
@@ -33,6 +34,7 @@ Header files for qoauth library.
 
 %prep
 %setup -q -n %{name}-%{version}-src
+%patch0 -p1
 
 %build
 qmake-qt4 qoauth.pro \
